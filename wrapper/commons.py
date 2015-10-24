@@ -92,4 +92,4 @@ RooGaussian.add_constructor([param('const char *', 'name'), param('const char *'
 RooGaussian.add_constructor([param('RooGaussian&', 'other'), param('const char *', 'name', default_value='0')])
 
 PDF_Abs = mod.add_class('PDF_Abs')
-PDF_Abs.add_method('getPdf', retval('RooAbsPdf *', caller_owns_return=True), [])
+PDF_Abs.add_method('getPdf', retval('RooAbsPdf *', reference_existing_object=True ), [])
