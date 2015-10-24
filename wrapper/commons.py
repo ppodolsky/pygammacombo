@@ -29,6 +29,9 @@ TString.add_method('Data', retval('const char*'), [])
 RooAbsArg = mod.add_class('RooAbsArg')
 
 
+RooAbsReal = mod.add_class('RooAbsReal')
+
+
 RooRealVar = mod.add_class('RooRealVar')
 RooRealVar.add_constructor([])
 RooRealVar.add_constructor([param('const char *', 'name'), param('const char *', 'title'),
