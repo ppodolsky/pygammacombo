@@ -11,6 +11,7 @@ mod.add_include('"TMatrixDSymfwd.h"')
 mod.add_include('"gammacombo/core/include/Parameter.h"')
 mod.add_include('"gammacombo/core/include/ParametersAbs.h"')
 mod.add_include('"gammacombo/core/include/PDF_ABS.h"')
+mod.add_include('"gammacombo/core/include/PDF_GGSZ.h"')
 mod.add_include('"gammacombo/core/include/PDF_GGSZ_cartesian.h"')
 mod.add_include('"gammacombo/core/include/UtilsConfig.h"')
 
