@@ -9,3 +9,5 @@ RooAbsArg.add_method('clone',
                      retval('TObject *', reference_existing_object=True),
                      [param('const char*', 'newname', default_value = '0')],
                      is_pure_virtual=True)
+RooAbsArg.add_method('Print', None, [])
+

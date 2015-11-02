@@ -44,6 +44,7 @@ from wrapper.PDF_GGSZ_cartesian import PDF_GGSZ_cartesian
 from wrapper.RooAbsArg import RooAbsArg
 from wrapper.RooAbsPdf import RooAbsPdf
 from wrapper.RooAbsReal import RooAbsReal
+from wrapper.RooArgList import RooArgList
 from wrapper.RooArgSet import RooArgSet
 from wrapper.RooGaussian import RooGaussian
 from wrapper.RooRealVar import RooRealVar

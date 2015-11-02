@@ -3,7 +3,7 @@ from wrapper.TString import TString
 
 Parameter = mod.add_class('Parameter')
 
-Range = mod.add_class('Range', outer_class=Parameter)
+Range = mod.add_struct('Range', outer_class=Parameter)
 Range.add_instance_attribute('min', 'float')
 Range.add_instance_attribute('max', 'float')
 
