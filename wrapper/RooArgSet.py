@@ -1,4 +1,5 @@
 from wrapper import *
+from wrapper.RooAbsArg import RooAbsArg
 
 RooArgSet = mod.add_class('RooArgSet')
 RooArgSet.add_constructor([param('const RooArgSet&', 'set1'), param('const RooArgSet&', 'set2'),
