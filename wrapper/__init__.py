@@ -8,6 +8,7 @@ mod.add_include('"RooArgSet.h"')
 mod.add_include('"RooRealVar.h"')
 mod.add_include('"TString.h"')
 mod.add_include('"TMatrixDSymfwd.h"')
+mod.add_include('"Utils.h"')
 mod.add_include('"gammacombo/core/include/Parameter.h"')
 mod.add_include('"gammacombo/core/include/ParametersAbs.h"')
 mod.add_include('"gammacombo/core/include/PDF_ABS.h"')
@@ -15,8 +16,13 @@ mod.add_include('"gammacombo/core/include/PDF_GGSZ.h"')
 mod.add_include('"gammacombo/core/include/PDF_GGSZ_cartesian.h"')
 mod.add_include('"gammacombo/core/include/UtilsConfig.h"')
 
+std_namespace = mod.add_cpp_namespace('std')
+std_ostream = std_namespace.add_class('ostream')
+pybindgen_utils_namespace = mod.add_cpp_namespace('pybindgen_utils')
+get_cout = pybindgen_utils_namespace.add_function('getCout', retval('ostream*', reference_existing_object=True), [])
+
 utils_namespace = mod.add_cpp_namespace('Utils')
-utils_namespace.add_enum('config', ['year2014','babar','babar2007','babar2008',
+config = utils_namespace.add_enum('config', ['year2014','babar','babar2007','babar2008',
                                     'babar2010','babar2012','belle','belle2005cleo2009',
                                     'belle2006','belle2007','belle2009','belle2012','belle2012preliminary',
                                     'belle2013','belle2014','belle2013cleo2014','cdf2007','cdf2012',
@@ -44,13 +50,18 @@ from wrapper.PDF_GGSZ_cartesian import PDF_GGSZ_cartesian
 from wrapper.RooAbsArg import RooAbsArg
 from wrapper.RooAbsPdf import RooAbsPdf
 from wrapper.RooAbsReal import RooAbsReal
+from wrapper.RooAbsRealLValue import RooAbsRealLValue
 from wrapper.RooArgList import RooArgList
 from wrapper.RooArgSet import RooArgSet
 from wrapper.RooGaussian import RooGaussian
+from wrapper.RooMultiVarGaussian import RooMultiVarGaussian
 from wrapper.RooRealVar import RooRealVar
 from wrapper.TObject import TObject
 from wrapper.TString import TString
 from wrapper.ParametersAbs import ParametersAbs
+
+to_roo_real_var = pybindgen_utils_namespace.add_function('toRooRealVar', retval('RooRealVar*', caller_owns_return=False, reference_existing_object=True), [param('RooAbsArg*', 'arg', transfer_ownership=False)])
+
 
 def generate():
     codegen = io.StringIO("")
