@@ -39,7 +39,8 @@ wrapper_library = megazord \
     .set_optimization_level(3)
 
 wrapper_library.assembly()
-wrapper_library.deploy_to('/Users/PashaPodolsky/Projects/PyBayCor/')
+megazord.system.mkdir_p(('./output'))
+wrapper_library.deploy_to('./output')
 os.remove('PyGammaCombo.cpp')
 
 
