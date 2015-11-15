@@ -9,17 +9,18 @@ mod.add_include('"RooRealVar.h"')
 mod.add_include('"TString.h"')
 mod.add_include('"TMatrixDSymfwd.h"')
 mod.add_include('"Utils.h"')
-mod.add_include('"gammacombo/core/include/Parameter.h"')
-mod.add_include('"gammacombo/core/include/ParametersAbs.h"')
-mod.add_include('"gammacombo/core/include/PDF_ABS.h"')
-mod.add_include('"gammacombo/core/include/PDF_GGSZ.h"')
-mod.add_include('"gammacombo/core/include/PDF_GGSZ_cartesian.h"')
-mod.add_include('"gammacombo/core/include/UtilsConfig.h"')
+mod.add_include('"gammacombo/include/GammaComboEngine.h"')
+mod.add_include('"gammacombo/include/Parameter.h"')
+mod.add_include('"gammacombo/include/ParametersAbs.h"')
+mod.add_include('"gammacombo/include/PDF_ABS.h"')
+mod.add_include('"gammacombo/include/PDF_GGSZ.h"')
+mod.add_include('"gammacombo/include/PDF_GGSZ_cartesian.h"')
+mod.add_include('"gammacombo/include/UtilsConfig.h"')
 
 std_namespace = mod.add_cpp_namespace('std')
 std_ostream = std_namespace.add_class('ostream')
-pybindgen_utils_namespace = mod.add_cpp_namespace('pybindgen_utils')
-get_cout = pybindgen_utils_namespace.add_function('getCout', retval('ostream*', reference_existing_object=True), [])
+gammacombo_utils_namespace = mod.add_cpp_namespace('gammacombo_utils')
+get_cout = gammacombo_utils_namespace.add_function('getCout', retval('ostream*', reference_existing_object=True), [])
 
 utils_namespace = mod.add_cpp_namespace('Utils')
 config = utils_namespace.add_enum('config', ['year2014','babar','babar2007','babar2008',
@@ -41,6 +42,7 @@ config = utils_namespace.add_enum('config', ['year2014','babar','babar2007','bab
                                     'nophicorr','onlyGsDGs','pdg','sneha','toy','truth','useBicubic',
                                     'useCartCoords','useGaussian','useHistogram','useParametric','usePolarCoords',
                                     'useTradObs','world_average','zero'])
+from wrapper.GammaComboEngine import GammaComboEngine
 from wrapper.Parameter import Parameter
 from wrapper.ParametersGammaCombo import ParametersGammaCombo
 from wrapper.ParametersVector import ParametersVector
@@ -60,14 +62,21 @@ from wrapper.TObject import TObject
 from wrapper.TString import TString
 from wrapper.ParametersAbs import ParametersAbs
 
-to_roo_real_var = pybindgen_utils_namespace.add_function('toRooRealVar', retval('RooRealVar*', caller_owns_return=False, reference_existing_object=True), [param('RooAbsArg*', 'arg', transfer_ownership=False)])
+get = gammacombo_utils_namespace.add_function('toRooRealVar',
+                                             retval('RooRealVar*', caller_owns_return=False, reference_existing_object=True),
+                                             [param('RooAbsArg*', 'arg', transfer_ownership=False)])
+get = gammacombo_utils_namespace.add_function('getMainGammaComboEngine',
+                                             retval('GammaComboEngine*', caller_owns_return=True, reference_existing_object=True),
+                                             [param('const char*', 'argv')])
 
 
-def generate():
+def generate(filename):
     codegen = io.StringIO("")
     mod.generate(codegen)
     codegen = codegen.getvalue()
     # Monkey patch - pybindgen makes incorrect cast
     codegen = codegen.replace("(cmpfunc)NULL","NULL")
     # ---------------------------------------------
-    return codegen
+    file = open(filename, 'w')
+    file.write(codegen)
+    file.close()

@@ -3,23 +3,44 @@ import os
 import megazord
 import wrapper
 
-codegen = wrapper.generate()
-file = open('PyGammaCombo.cpp', 'w')
-file.write(codegen)
-file.close()
+#General Dictionary
+dict_h = ['RooBinned2DBicubicBase.h', 'RooCrossCorPdf.h', 'RooHistPdfAngleVar.h', 'RooHistPdfVar.h', 'RooPoly3Var.h', 'RooPoly4Var.h', 'RooSlimFitResult.h', 'coreLinkDef.h']
+rcint = ['rootcint', '-cint', '-f', 'gammacombo/gammacomboCoreDict.cxx', '-c', '-p', '-Igammacombo/include']
+megazord.system.call(*(rcint+dict_h))
+megazord.system.move('gammacombo/gammacomboCoreDict.cxx', 'gammacombo/src/gammacomboCoreDict.cpp')
+megazord.system.move('gammacombo/gammacomboCoreDict.h', 'gammacombo/include/gammacomboCoreDict.h')
+
+#Combiner Dictionary
+dict_h = ['RooAdsCartCoordVar.h', 'RooGLWADSDmixAcpADSVar.h', 'RooGLWADSDmixAcpVar.h', 'RooGLWADSDmixMaster.h',
+          'RooGLWADSDmixRADSVar.h', 'RooGLWADSDmixRcpVar.h', 'RooGLWADSDmixRcpNewVar.h', 'RooGLWADSDmixRcpRatioVar.h',
+          'RooGLWADSDmixRkpVar.h', 'RooGLWADSDmixRpmVar.h', 'RooGlwCartCoordVar.h', 'gammacomboLinkDef.h']
+rcint = ['rootcint', '-cint', '-f', 'gammacombo/gammacomboDict.cxx', '-c', '-p', '-Igammacombo/include']
+megazord.system.call(*(rcint+dict_h))
+megazord.system.move('gammacombo/gammacomboDict.cxx', 'gammacombo/src/gammacomboDict.cpp')
+megazord.system.move('gammacombo/gammacomboDict.h', 'gammacombo/include/gammacomboDict.h')
+
+gammacombo_library = megazord \
+    .Target('./gammacombo/src/*.cpp', delayed=False, output='libgammacomboCoreComponents.so')\
+    .add_include_path('./gammacombo/include')\
+    .add_support("root")\
+    .add_library(["RooFitCore", "RooFit", "Html", "Minuit", "Thread", "RooStats", "Gui", "TreePlayer", "GenVector"])\
+    .set_optimization_level(3)
+
+codegen = wrapper.generate('PyGammaCombo.cpp')
 
 # Compiling wrapper
-libs = ['gammacomboCoreComponents.1.0.0', 'Core', 'RooFit', 'RooFitCore', 'm', 'dl']
-libs.extend(megazord.system.library("python3"))
-wrapper = megazord \
+wrapper_library = megazord \
     .Target('PyGammaCombo.cpp', output='PyGammaCombo.so')\
+    .depends_on(gammacombo_library)\
     .add_library_path('./')\
-    .add_library_path(megazord.system.library_paths("root"))\
-    .add_library_path(megazord.system.library_paths("python3"))\
-    .add_include_path(megazord.system.include_paths("root"))\
-    .add_include_path(megazord.system.include_paths("python3"))\
-    .add_include_path('./gammacombo/core/include')\
-    .add_library(libs)
+    .add_include_path('./gammacombo/include')\
+    .add_support(["root", "python3"])\
+    .add_library(['RooFitCore'])\
+    .set_optimization_level(3)
 
-wrapper.assembly()
-os.rename('libPyGammaCombo.so', 'PyGammaCombo.so')
+wrapper_library.assembly()
+wrapper_library.deploy_to('/Users/PashaPodolsky/Projects/PyBayCor/')
+os.remove('PyGammaCombo.cpp')
+
+
+
