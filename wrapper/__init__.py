@@ -9,6 +9,7 @@ mod.add_include('"RooRealVar.h"')
 mod.add_include('"TString.h"')
 mod.add_include('"TMatrixDSymfwd.h"')
 mod.add_include('"Utils.h"')
+mod.add_include('"gammacombo/include/Combiner.h"')
 mod.add_include('"gammacombo/include/GammaComboEngine.h"')
 mod.add_include('"gammacombo/include/Parameter.h"')
 mod.add_include('"gammacombo/include/ParametersAbs.h"')
@@ -42,10 +43,12 @@ config = utils_namespace.add_enum('config', ['year2014','babar','babar2007','bab
                                     'nophicorr','onlyGsDGs','pdg','sneha','toy','truth','useBicubic',
                                     'useCartCoords','useGaussian','useHistogram','useParametric','usePolarCoords',
                                     'useTradObs','world_average','zero'])
+
+from wrapper.Combiner import Combiner
 from wrapper.GammaComboEngine import GammaComboEngine
 from wrapper.Parameter import Parameter
-from wrapper.ParametersGammaCombo import ParametersGammaCombo
 from wrapper.ParametersVector import ParametersVector
+from wrapper.ParametersGammaCombo import ParametersGammaCombo
 from wrapper.PDF_Abs import PDF_Abs
 from wrapper.PDF_GGSZ import PDF_GGSZ
 from wrapper.PDF_GGSZ_cartesian import PDF_GGSZ_cartesian
@@ -58,6 +61,7 @@ from wrapper.RooArgSet import RooArgSet
 from wrapper.RooGaussian import RooGaussian
 from wrapper.RooMultiVarGaussian import RooMultiVarGaussian
 from wrapper.RooRealVar import RooRealVar
+from wrapper.StringsVector import StringsVector
 from wrapper.TObject import TObject
 from wrapper.TString import TString
 from wrapper.ParametersAbs import ParametersAbs
@@ -65,8 +69,8 @@ from wrapper.ParametersAbs import ParametersAbs
 get = gammacombo_utils_namespace.add_function('toRooRealVar',
                                              retval('RooRealVar*', caller_owns_return=False, reference_existing_object=True),
                                              [param('RooAbsArg*', 'arg', transfer_ownership=False)])
-get = gammacombo_utils_namespace.add_function('getMainGammaComboEngine',
-                                             retval('GammaComboEngine*', caller_owns_return=True, reference_existing_object=True),
+get = gammacombo_utils_namespace.add_function('getGammaComboEngine',
+                                             retval('GammaComboEngine&'),
                                              [param('const char*', 'argv')])
 
 

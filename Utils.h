@@ -21,14 +21,14 @@ std::vector<char*> split(const std::string &s, char delim) {
 }
 
 namespace gammacombo_utils {
-    std::ostream* getCout() {
+    inline std::ostream* getCout() {
         return &std::cout;
     }
     inline RooRealVar* toRooRealVar(RooAbsArg* arg){
         return (RooRealVar*) arg;
     }
-    inline GammaComboEngine* getMainGammaComboEngine(const char* argv_str){
-        std::string argv_full_str("stub ");
+    GammaComboEngine& getGammaComboEngine(const char* argv_str){
+        std::string argv_full_str("gammacombo ");
         argv_full_str += argv_str;
         std::vector<char*> argv = split(argv_full_str, ' ');
         return loadMainGammaComboEngine(argv.size(), &argv[0]);

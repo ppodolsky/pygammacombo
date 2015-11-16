@@ -37,3 +37,6 @@ RooArgSet.add_constructor([param('const RooAbsArg&', 'var1'), param('const RooAb
                            param('const RooAbsArg&', 'var9'), param('const char*', 'name')])
 
 RooArgSet.add_method('getRealValue', retval('double'), [param('const char*', 'name'), param('double', 'defVal', default_value='0')])
+RooArgSet.add_method('setRealValue', retval('bool'), [param('const char*', 'name'),
+                                                      param('double', 'newVal', default_value='0'),
+                                                      param('bool', 'verbose', default_value='kFALSE')])
