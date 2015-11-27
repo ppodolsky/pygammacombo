@@ -15,7 +15,7 @@ codegen = wrapper.generate('PyGammaCombo.cpp')
 
 # Compiling wrapper
 wrapper_library = megazord \
-    .Target('PyGammaCombo.cpp', output='PyGammaCombo.so')\
+    .Target('PyGammaCombo.cpp', compiler='g++', output='PyGammaCombo.so')\
     .depends_on(gammacombo_library)\
     .add_library_path('./')\
     .add_include_path('./gammacombo/include')\
