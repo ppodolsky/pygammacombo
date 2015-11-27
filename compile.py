@@ -4,7 +4,7 @@ import megazord
 import wrapper
 
 gammacombo_library = megazord \
-    .Target('./gammacombo/src/*.cpp', delayed=False, output='libgammacomboCoreComponents.so')\
+    .Target('./gammacombo/src/*.cpp', compiler='g++', forced=True, delayed=False, output='libgammacomboCoreComponents.so')\
     .add_include_path('./gammacombo/include')\
     .add_support("root")\
     .add_library(["RooFitCore", "RooFit", "Html", "Minuit", "Thread", "RooStats", "Gui", "TreePlayer", "GenVector"])\
@@ -20,13 +20,14 @@ wrapper_library = megazord \
     .add_library_path('./')\
     .add_include_path('./gammacombo/include')\
     .add_support(["root", "python3"])\
-    .add_library(['RooFitCore'])\
+    .add_library(["RooFitCore", "RooFit"])\
     .add_options('PIC')\
     .set_optimization_level(3)
 
 wrapper_library.assembly()
 megazord.system.mkdir_p(('./output'))
-wrapper_library.deploy_to('./output')
+wrapper_library.deploy_to('./output', with_dependencies=False)
+gammacombo_library.deploy_to('/usr/lib')
 os.remove('PyGammaCombo.cpp')
 
 
