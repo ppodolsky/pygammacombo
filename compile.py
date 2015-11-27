@@ -8,6 +8,7 @@ gammacombo_library = megazord \
     .add_include_path('./gammacombo/include')\
     .add_support("root")\
     .add_library(["RooFitCore", "RooFit", "Html", "Minuit", "Thread", "RooStats", "Gui", "TreePlayer", "GenVector"])\
+    .add_options('PIC')\
     .set_optimization_level(3)
 
 codegen = wrapper.generate('PyGammaCombo.cpp')
@@ -20,6 +21,7 @@ wrapper_library = megazord \
     .add_include_path('./gammacombo/include')\
     .add_support(["root", "python3"])\
     .add_library(['RooFitCore'])\
+    .add_options('PIC')\
     .set_optimization_level(3)
 
 wrapper_library.assembly()
