@@ -23,6 +23,7 @@ std_ostream = std_namespace.add_class('ostream')
 gammacombo_utils_namespace = mod.add_cpp_namespace('gammacombo_utils')
 get_cout = gammacombo_utils_namespace.add_function('getCout', retval('ostream*', reference_existing_object=True), [])
 
+
 utils_namespace = mod.add_cpp_namespace('Utils')
 config = utils_namespace.add_enum('config', ['year2014','babar','babar2007','babar2008',
                                     'babar2010','babar2012','belle','belle2005cleo2009',
@@ -66,12 +67,16 @@ from wrapper.TObject import TObject
 from wrapper.TString import TString
 from wrapper.ParametersAbs import ParametersAbs
 
-get = gammacombo_utils_namespace.add_function('toRooRealVar',
+gammacombo_utils_namespace.add_function('toRooRealVar',
                                              retval('RooRealVar*', caller_owns_return=False, reference_existing_object=True),
                                              [param('RooAbsArg*', 'arg', transfer_ownership=False)])
-get = gammacombo_utils_namespace.add_function('getGammaComboEngine',
+gammacombo_utils_namespace.add_function('getGammaComboEngine',
                                              retval('GammaComboEngine&'),
                                              [param('const char*', 'argv')])
+gammacombo_utils_namespace.add_function('extractFromRooArgSet',
+                                        retval('RooAbsArg*', caller_owns_return=False, reference_existing_object=True),
+                                        [param('const RooArgSet*', 'set', transfer_ownership=False),
+                                         param('std::string', 'name')])
 
 
 def generate(filename):

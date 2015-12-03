@@ -4,7 +4,7 @@ import megazord
 import wrapper
 
 gammacombo_library = megazord \
-    .Target('./gammacombo/src/*.cpp', compiler='g++', forced=True, delayed=False, output='libgammacomboCoreComponents.so')\
+    .Target('./gammacombo/src/*.cpp', compiler='g++', delayed=False, output='libgammacomboCoreComponents.so')\
     .add_include_path('./gammacombo/include')\
     .add_support("root")\
     .add_library(["RooFitCore", "RooFit", "Html", "Minuit", "Thread", "RooStats", "Gui", "TreePlayer", "GenVector"])\
