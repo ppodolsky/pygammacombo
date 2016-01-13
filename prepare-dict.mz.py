@@ -1,5 +1,5 @@
 import megazord
-"""Generate dictionaries for code (require rootcint tool"""
+"""Generate dictionaries for code (require rootcint tool)"""
 
 
 dict_h = ['RooBinned2DBicubicBase.h', 'RooCrossCorPdf.h', 'RooHistPdfAngleVar.h', 'RooHistPdfVar.h', 'RooPoly3Var.h', 'RooPoly4Var.h', 'RooSlimFitResult.h', 'coreLinkDef.h']
