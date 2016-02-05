@@ -38,7 +38,10 @@ void computeCleoPdf()
   //TString fName = "CLEO_KSKpiScan_2012_Kst";
   //TString hName = "loglik";
 
-  TString fName = "CLEO_KPiPi0Scan_2014";
+  //TString fName = "CLEO_KPiPi0Scan_2014";
+  //TString hName = "deltachisq";
+
+  TString fName = "CLEO_LHCb_K3PiScan_2015";
   TString hName = "deltachisq";
 
   //
@@ -80,6 +83,8 @@ void computeCleoPdf()
   {
     // exponentionate to turn chi2 into likelihood
     float eVal = hExpNll->GetBinContent(i,j);
+    // hack for bad histogram
+    if (eVal>9) eVal=9;
     if (eVal>0){
 	    eVal = TMath::Exp(-eVal/2.);
 	    hNew->SetBinContent(i, j, eVal);
