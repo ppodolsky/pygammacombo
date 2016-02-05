@@ -1,8 +1,9 @@
 from wrapper import *
 from wrapper.RooAbsArg import RooAbsArg
-from wrapper.RooArgList import RooArgList
 
 RooArgSet = mod.add_class('RooArgSet')
+from wrapper.RooArgList import RooArgList
+
 RooArgSet.add_constructor([param('const RooArgList&', 'list')])
 RooArgSet.add_constructor([param('const RooArgSet&', 'set1'), param('const RooArgSet&', 'set2'),
                            param('const char*', 'name')])

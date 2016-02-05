@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include "gammacombo.h"
+#include "hfag_gammacombo.h"
 #include "RooRealVar.h"
 
 std::vector<char*> &split(const std::string &s, char delim, std::vector<char*> &elems) {
@@ -27,10 +28,19 @@ namespace gammacombo_utils {
     inline RooRealVar* toRooRealVar(RooAbsArg* arg){
         return (RooRealVar*) arg;
     }
+    inline RooAbsArg* extractFromRooArgSet(RooArgSet* set, std::string name) {
+        return &((*set)[TString(name)]);
+    }
     GammaComboEngine& getGammaComboEngine(const char* argv_str){
         std::string argv_full_str("gammacombo ");
         argv_full_str += argv_str;
         std::vector<char*> argv = split(argv_full_str, ' ');
         return loadMainGammaComboEngine(argv.size(), &argv[0]);
+    }
+    GammaComboEngine& getHfagGammaComboEngine(const char* argv_str){
+        std::string argv_full_str("hfag_gammacombo ");
+        argv_full_str += argv_str;
+        std::vector<char*> argv = split(argv_full_str, ' ');
+        return loadHfagGammaComboEngine(argv.size(), &argv[0]);
     }
 }
