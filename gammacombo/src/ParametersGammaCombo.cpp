@@ -107,12 +107,48 @@ void ParametersGammaCombo::defineParameters()
 	p = newParameter("r_dpi");
 	// p->title = "r_{B}^{#pi}";
 	p->title = "r_{B}^{D#pi}";
-	p->startvalue = 0.02;
+	p->startvalue = 0.005;
 	p->unit = "";
 	p->scan = range(0, 0.1);
 	p->phys = range(0, 1e4);
 	p->force = range(0.001, 0.04);
 	p->bboos = range(0, 0.18); // B -> Dpi
+
+	p = newParameter("xm_dpi");
+	p->title = "x- (D#pi)";
+	p->startvalue = 0;
+	p->unit = "";
+	p->scan = range(-0.2, 0.2);
+	p->phys = range(-1e4, 1e4);
+	p->force = range(-0.2, 0.2);
+	p->bboos = range(0.01, 0.22); // B -> Dpi
+
+	p = newParameter("ym_dpi");
+	p->title = "y- (D#pi)";
+	p->startvalue = 0;
+	p->unit = "";
+	p->scan = range(0.0, 0.3);
+	p->phys = range(-1e4, 1e4);
+	p->force = range(-0.2, 0.2);
+	p->bboos = range(0.01, 0.22); // B -> Dpi
+
+	p = newParameter("xp_dpi");
+	p->title = "x+ (D#pi)";
+	p->startvalue = 0;
+	p->unit = "";
+	p->scan = range(-0.2, 0.2);
+	p->phys = range(-1e4, 1e4);
+	p->force = range(-0.2, 0.2);
+	p->bboos = range(0.01, 0.22); // B -> Dpi
+
+	p = newParameter("yp_dpi");
+	p->title = "y+ (D#pi)";
+	p->startvalue = 0;
+	p->unit = "";
+	p->scan = range(-0.2, 0.2);
+	p->phys = range(-1e4, 1e4);
+	p->force = range(-0.2, 0.2);
+	p->bboos = range(0.01, 0.22); // B -> Dpi
 
 	p = newParameter("d_dkpipi");
 	p->title = "#delta_{B}^{DK#pi#pi}";
@@ -229,18 +265,18 @@ void ParametersGammaCombo::defineParameters()
 	// B0 -> D0Kst0
 	p = newParameter("d_dkstz");
 	p->title = "#delta_{D^{0}K^{*}}";
-	p->startvalue = DegToRad(330);
+	p->startvalue = DegToRad(200);
 	p->unit = "Rad";
 	p->scan = range(DegToRad(0), DegToRad(360));
 	p->phys = range(-7, 7);
-	p->force = range(DegToRad(0), DegToRad(90));
-	p->bboos = range(DegToRad(-180), DegToRad(180)); // B0 -> D0Kst0
+	p->force = range(DegToRad(180), DegToRad(360));
+	p->bboos = range(DegToRad(0), DegToRad(360)); // B0 -> D0Kst0
 
 	p = newParameter("r_dkstz");
 	p->title = "r_{D^{0}K^{*}}";
 	p->startvalue = 0.3;
 	p->unit = "";
-	p->scan = range(0, 0.6);
+	p->scan = range(0, 1.);
 	p->phys = range(0.001, 1);
 	p->force = range(0.001, 0.6);
 	p->bboos = range(0, 1);
@@ -275,19 +311,19 @@ void ParametersGammaCombo::defineParameters()
 
   // Special ratio parameters suggested by Tim
 	p = newParameter("delta_dkstz");
-	p->title = "#Delta#delta_{D^{0}K*^{0}}";
-	p->startvalue = DegToRad(0.);
-	p->unit = "Rad";
-	p->scan = range(DegToRad(0), DegToRad(180));
+	p->title = "#bar{#Delta}_{D^{0}K*^{0}}";
+	p->startvalue = DegToRad(0.2);
+	p->unit = "";
+	p->scan = range(DegToRad(-20), DegToRad(20));
 	p->phys = range(-7, 7);
-	p->force = range(DegToRad(0), DegToRad(90));
+	p->force = range(DegToRad(-90), DegToRad(90));
 	p->bboos = range(DegToRad(-180), DegToRad(180)); // B0 -> D0Kst0
 
 	p = newParameter("R_dkstz");
-	p->title = "R_{D^{0}K*^{0}}";
-	p->startvalue = 1.;
+	p->title = "#bar{R}_{D^{0}K*^{0}}";
+	p->startvalue = 1.1;
 	p->unit = "";
-	p->scan = range(0, 10.0);
+	p->scan = range(0.8, 1.2);
 	p->phys = range(0.001, 10.);
 	p->force = range(0.001, 10.0);
 	p->bboos = range(0, 10);
@@ -385,7 +421,7 @@ void ParametersGammaCombo::defineParameters()
 	p->title = "r_{K#pi#pi^{0}}";
 	p->startvalue = 0.046;
 	p->unit = "";
-	p->scan = range(0.045, 0.065);
+	p->scan = range(0.035, 0.055);
 	p->phys = range(0, 1e4);
 	p->force = range(0.001, 0.15);
 	p->bboos = range(0.01, 0.15);
@@ -669,5 +705,24 @@ void ParametersGammaCombo::defineParameters()
   p->phys = range(0.,1.);
   p->force = range(0.,1.);
   p->bboos = range(0.,1.);
+
+  // u and v
+  p = newParameter("u_dpi");
+  p->title = "u^{D#pi}";
+  p->startvalue = 0.01;
+  p->unit = "";
+  p->scan = range(-0.05,0.05);
+  p->phys = range(-0.1,0.1);
+  p->force = range(-0.1,0.1);
+  p->bboos = range(-0.1,0.1);
+
+  p = newParameter("v_dpi");
+  p->title = "v^{D#pi}";
+  p->startvalue = -0.01;
+  p->unit = "";
+  p->scan = range(-0.05,0.05);
+  p->phys = range(-0.1,0.1);
+  p->force = range(-0.1,0.1);
+  p->bboos = range(-0.1,0.1);
 
 }

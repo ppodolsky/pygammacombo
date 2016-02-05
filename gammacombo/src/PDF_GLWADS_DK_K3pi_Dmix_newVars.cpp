@@ -131,11 +131,11 @@ void PDF_GLWADS_DK_K3pi_Dmix_newVars::setUncertainties(config c)
 						StatErr[3]  = 1.49e-03 ; // rads_dk_k3pi_obs
 						StatErr[4]  = 3.67e-02 ; // rcp_4pi_obs
 
-						SystErr[0]  = 0.015    ; // aads_dk_k3pi_obs
-						SystErr[1]  = 0.0079   ; // acp_dk_4pi_obs
-						SystErr[2]  = 0.0030   ; // afav_dk_k3pi_obs
-						SystErr[3]  = 0.00041  ; // rads_dk_k3pi_obs
-						SystErr[4]  = 0.010    ; // rcp_4pi_obs
+						SystErr[0]  = 0.038  ; // aads_dk_k3pi_obs
+						SystErr[1]  = 0.018  ; // acp_dk_4pi_obs
+						SystErr[2]  = 0.0020 ; // afav_dk_k3pi_obs
+						SystErr[3]  = 0.00060; // rads_dk_k3pi_obs
+						SystErr[4]  = 0.019  ; // rcp_4pi_obs
 
 						break;
 			}

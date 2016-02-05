@@ -71,10 +71,10 @@ void PDF_B_DKstz_constraints::setObservables(config c)
 				break;
 			}
 		case lhcb:
-			obsValSource = "B0->D0Kpi Fit Results - Dan's approval slides"; // https://indico.cern.ch/event/470104/session/1/contribution/3/attachments/1204060/1753754/20151211_dcraik.pdf
-			setObservable("k_dkstz_obs",0.96);
-			setObservable("R_dkstz_obs",1.029);
-			setObservable("delta_dkstz_obs",0.024);
+			obsValSource = "B0->D0Kpi Fit Results - PAPER draft v4"; // https://twiki.cern.ch/twiki/pub/LHCbPhysics/BdDKpigamma/paper_v4.pdf
+			setObservable("k_dkstz_obs",0.958);
+			setObservable("R_dkstz_obs",1.02);
+			setObservable("delta_dkstz_obs",0.02);
 			break;
 
 		default:
@@ -89,14 +89,14 @@ void PDF_B_DKstz_constraints::setUncertainties(config c)
 	switch(c)
 	{
 		case lhcb:
-			obsErrSource = "B0->D0Kpi Fit Results - Dan's approval slides"; // https://indico.cern.ch/event/470104/session/1/contribution/3/attachments/1204060/1753754/20151211_dcraik.pdf
-			StatErr[0] = 0.010;
-			StatErr[1] = 0.023;
+			obsErrSource = "B0->D0Kpi Fit Results - PAPER draft v4"; // https://twiki.cern.ch/twiki/pub/LHCbPhysics/BdDKpigamma/paper_v4.pdf
+			StatErr[0] = 0.0075;
+			StatErr[1] = 0.02;
 			StatErr[2] = 0.025;
 
       SystErr[0] = 0.024;
-			SystErr[1] = 0.060;
-			SystErr[2] = 0.107;
+			SystErr[1] = 0.06;
+			SystErr[2] = 0.11;
 			break;
 
 		default:

@@ -70,7 +70,7 @@ void PDF_rBPi::setObservables(config c)
 		case manual:
 			{
 				obsValSource = "niels";
-				setObservable("r_dpi_obs",0.0077);
+				setObservable("r_dpi_obs",0.0055);
 				break;
 			}
 		default:
@@ -89,7 +89,7 @@ void PDF_rBPi::setUncertainties(config c)
 		case manual:
 			{
 				obsErrSource = "niels";
-				StatErr[0] = 0.0035; //
+				StatErr[0] = 0.006; //
         SystErr[0] = 0.;
 				break;
 			}

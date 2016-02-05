@@ -97,7 +97,7 @@ void PDF_D_HFAGfit::setObservables(config c)
 							setObservable("dD_kpi_obs",   DegToRad(11.8+180.0));
 							setObservable("rD_kpi_obs",   0.349e-2);
 							setObservable("AcpDpipi_obs", 0.10e-2);
-							setObservable("AcpDKK_obs",   -0.15e-2);
+							setObservable("AcpDKK_obs",  -0.15e-2);
 							break;
 						}
 		default:{

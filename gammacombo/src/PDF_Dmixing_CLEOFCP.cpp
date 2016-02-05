@@ -81,14 +81,14 @@ void PDF_Dmixing_CLEOFCP::setUncertainties(config c)
 	switch(c)
 	{
 		case cleo2015:{
-					 obsErrSource = "arXiv:1504.05878 - CLEO-c CP content of D decays";
+					 obsErrSource = "arXiv:1504.05878 - CLEO-c CP content of D decays with effect from LHCb acceptance in 17.3 of LHCb-ANA-2014-071";
 					 //StatErr[0] = 0.055; // F_kkpi0
 					 //StatErr[1] = 0.017; // F_pipipi0
 					 //StatErr[2] = 0.028; // F_pipipipi
 					 //SystErr[0] = 0.; // F_kkpi0
 					 //SystErr[1] = 0.; // F_pipipi0
 					 //SystErr[2] = 0.; // F_pipipipi
-					 StatErr[0] = 0.028;
+					 StatErr[0] = 0.034;
 					 SystErr[0] = 0.;
 					 break;
 				 }

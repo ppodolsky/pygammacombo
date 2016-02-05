@@ -70,10 +70,10 @@ void PDF_GGSZ_DKpi::setObservables(config c)
 				 }
 		case lumi3fb:{
 						 obsValSource = "Email from Mark 20/11/15";
-						 setObservable("xm_dkpi_obs", -0.014);
-						 setObservable("ym_dkpi_obs", -0.298);
-						 setObservable("xp_dkpi_obs",  0.047);
-						 setObservable("yp_dkpi_obs", -0.475);
+						 setObservable("xm_dkpi_obs", -0.02);
+						 setObservable("ym_dkpi_obs", -0.35);
+						 setObservable("xp_dkpi_obs",  0.04);
+						 setObservable("yp_dkpi_obs", -0.47);
 						 break;
 					 }
 		default:{
@@ -90,15 +90,15 @@ void PDF_GGSZ_DKpi::setUncertainties(config c)
 	{
 		case lumi3fb:{
 						 obsErrSource = "Email from Mark 20/11/15";
-						 StatErr[0] = 0.127; // xm
-						 StatErr[1] = 0.256; // ym
-						 StatErr[2] = 0.160; // xp
-						 StatErr[3] = 0.278; // yp
+						 StatErr[0] = 0.13; // xm
+						 StatErr[1] = 0.26; // ym
+						 StatErr[2] = 0.16; // xp
+						 StatErr[3] = 0.28; // yp
 
-             SystErr[0] = 0.139; // xm
-						 SystErr[1] = 0.408; // ym
-						 SystErr[2] = 0.112; // xp
-						 SystErr[3] = 0.220; // yp
+             SystErr[0] = 0.14; // xm
+						 SystErr[1] = 0.41; // ym
+						 SystErr[2] = 0.11; // xp
+						 SystErr[3] = 0.22; // yp
 						 break;
 					 }
 		default:{
@@ -124,10 +124,10 @@ void PDF_GGSZ_DKpi::setCorrelations(config c)
 
              corStatMatrix = TMatrixDSym(nObs,dataStat);
 
-             double dataSyst[] = {  1.000,  0.813,  0.312,  0.379,
-                                    0.813,  1.000,  0.263,  0.393,
-                                    0.312,  0.263,  1.000,  0.698,
-                                    0.379,  0.393,  0.698,  1.000 };
+             double dataSyst[] = {  1.000,  0.872,  0.253,  0.368,
+                                    0.872,  1.000,  0.293,  0.414,
+                                    0.253,  0.293,  1.000,  0.731,
+                                    0.368,  0.414,  0.731,  1.000 };
 
              corSystMatrix = TMatrixDSym(nObs, dataSyst);
 

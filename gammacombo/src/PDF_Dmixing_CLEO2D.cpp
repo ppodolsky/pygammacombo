@@ -73,6 +73,12 @@ void PDF_Dmixing_CLEO2D::setObservables(config c)
 						  setObservable("kD_k3pi_obs",0.32);             // CLEO 2014
 						  break;
 					  }
+		case cleo2015:{
+						  obsValSource = "Guy";
+						  setObservable("dD_k3pi_obs",DegToRad(170.0));  // CLEO 2015
+						  setObservable("kD_k3pi_obs",0.32);             // CLEO 2015
+						  break;
+					  }
 		default:{
 					cout << "PDF_Dmixing_CLEO2D::setObservables() : ERROR : config "+ConfigToTString(c)+" not found." << endl;
 					exit(1);
@@ -100,6 +106,14 @@ void PDF_Dmixing_CLEO2D::setUncertainties(config c)
 						  SystErr[1] = 0.0;           // kD
 						  break;
 					  }
+		case cleo2015:{
+						  obsErrSource = "Guy";
+						  StatErr[0] = DegToRad(40);  // dD !?! very antisymmetric error from CLEO so what number should go here?
+						  StatErr[1] = 0.1;           // kD
+						  SystErr[0] = 0.0;           // dD
+						  SystErr[1] = 0.0;           // kD
+						  break;
+					  }
 		default:{
 					cout << "PDF_Dmixing_CLEO2D::setUncertainties() : ERROR : config "+ConfigToTString(c)+" not found." << endl;
 					exit(1);
@@ -120,6 +134,11 @@ void PDF_Dmixing_CLEO2D::setCorrelations(config c)
 		case cleo2014:{
 						  corSource = "CLEO 2014 (1401.1904)";
 						  corStatMatrix[1][0] = 0.201;
+						  break;
+					  }
+		case cleo2015:{
+						  corSource = "Guy";
+						  corStatMatrix[1][0] = 0.4;
 						  break;
 					  }
 		default:{
@@ -197,6 +216,10 @@ void PDF_Dmixing_CLEO2D::buildPdf()
 		buildPdfHistogram(this->dir+"/ExpNll/CLEO_K3PiScan_2009_GaussianRise_pdf2.root", 0.304957, 0.3325, 1.9984);
 	else if ( cType==useHistogram && cObs==cleo2014 ){
 		buildPdfHistogram(this->dir+"/ExpNll/CLEO_K3PiScan_2014_pdf.root", 1.06322, 0.31, 4.45059); // corresponding to interpolation order 2
+		// buildPdfHistogram(this->dir+"/ExpNll/CLEO_K3PiScan_2014_Gaussian_pdf.root", 0.470901, 0.31, 4.45059);
+	}
+	else if ( cType==useHistogram && cObs==cleo2015 ){
+		buildPdfHistogram(this->dir+"/ExpNll/CLEO_LHCb_K3PiScan_2015_pdf.root", -2.85, 0.335, 2.87979); // corresponding to interpolation order 2
 		// buildPdfHistogram(this->dir+"/ExpNll/CLEO_K3PiScan_2014_Gaussian_pdf.root", 0.470901, 0.31, 4.45059);
 	}
 	else if ( cType==useGaussian )
